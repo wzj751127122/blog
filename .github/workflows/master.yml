@@ -1,0 +1,52 @@
+name: master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      # node 编译
+      - name: build
+        uses: actions/setup-node@v1
+      - run: |
+          npm i -g hexo-cli 
+          npm i -f
+          hexo clean
+          hexo g
+      # docker build，并push
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.REGISTRYNAME }}
+          password: ${{ secrets.REGISTRYPASS }}
+          repository: wzj751127122/blog
+          tags: ${{ github.sha }}
+
+      # 让K8s应用deployment
+      - run: |
+          sed -i 's/{TAG}/${{ github.sha }}/g' deployment.yaml
+      - name: deploy to cluster
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          KUBECTL_VERSION: "1.16"
+        with:
+          args: apply -f deployment.yaml
+      - name: verify deployment
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          KUBECTL_VERSION: "1.16"
+        with:
+          args: '"rollout status -n blog deployment/blog"'
