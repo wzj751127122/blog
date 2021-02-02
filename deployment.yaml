@@ -1,19 +1,19 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: blog
-  namespace: blog
-spec:
-  rules:
-    - host: 119.29.11.185
-      http:
-        paths:
-          - backend:
-              serviceName: blog
-              servicePort: 80
-  backend:
-    serviceName: blog
-    servicePort: 80
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: blog
+#  namespace: blog
+#spec:
+#  rules:
+#    - host: 119.29.11.185
+#      http:
+#        paths:
+#          - backend:
+#              serviceName: blog
+#              servicePort: 80
+#  backend:
+#    serviceName: blog
+#    servicePort: 80
 
 ---
 apiVersion: v1
