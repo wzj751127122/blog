@@ -9,15 +9,15 @@ const checkbox = (args) => {
 
   if (text === 'checked' || text === 'true' || text === 'false') {
     const checked = text === 'checked' || text === 'true';
-    return `<input type="checkbox" ${checked ? 'checked="checked"' : ''}>`;
+    return `<input type="checkbox" disabled ${checked ? 'checked="checked"' : ''}>`;
   }
-  !text && hexo.log.warn('Checkbox text must be defined!');
+  !text && hexo.log.warn('[Fluid] Checkbox text must be defined!');
 
   const checked = (args[1] || '').length > 0 && args[1].trim() !== 'false';
   const inline = (args[2] || '').length > 0 && args[2].trim() !== 'false';
 
   return `${!inline ? '<div>' : ''}
-            <input type="checkbox" ${checked ? 'checked="checked"' : ''}>${text}
+            <input type="checkbox" disabled ${checked ? 'checked="checked"' : ''}>${text}
           ${!inline ? '</div>' : ''}`;
 
 };

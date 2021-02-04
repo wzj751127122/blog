@@ -2,15 +2,15 @@
 
 'use strict';
 
-const postLabel = (args) => {
+const label = (args) => {
   args = args.join(' ').split('@');
   const classes = args[0] || 'default';
   const text = args[1] || '';
 
-  !text && hexo.log.warn('Label text must be defined!');
+  !text && hexo.log.warn('[Fluid] Label text must be defined!');
 
   return `<span class="label label-${classes.trim()}">${text}</span>`;
 };
 
-// {% label [class...] @text %}
-hexo.extend.tag.register('label', postLabel, { ends: false });
+// {% label class @text %}
+hexo.extend.tag.register('label', label, { ends: false });

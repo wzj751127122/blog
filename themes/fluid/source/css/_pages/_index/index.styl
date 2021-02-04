@@ -18,6 +18,7 @@
   padding-bottom .5rem
 
 .index-header
+  color var(--text-color)
   font-size 1.5rem
   font-weight bold
   line-height 1.2
@@ -25,14 +26,19 @@
   overflow hidden
   text-overflow ellipsis
 
+  .index-pin
+    color var(--text-color)
+    font-size 1.5rem
+    margin-right .15rem
+
 .index-btm
-  color $sec-text-color
+  color var(--sec-text-color)
 
   a
-    color $sec-text-color
+    color var(--sec-text-color)
 
 .index-excerpt
-  color $sec-text-color
+  color var(--sec-text-color)
 
   margin 0.5rem 0 0.5rem 0
   max-height calc(1.4rem * 3)
@@ -60,3 +66,6 @@
     display -webkit-box
     -webkit-box-orient vertical
     -webkit-line-clamp 2
+
+    .index-pin
+      font-size 1.25rem
