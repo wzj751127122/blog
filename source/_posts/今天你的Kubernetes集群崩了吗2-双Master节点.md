@@ -1,9 +1,10 @@
 ---
 title: 今天你的Kubernetes集群崩了吗2-双Master节点
-date: 2020-05-17
-updated: 2020-05-17
+date: 2021-01-15
+updated: 2021-01-15
 categories:
   - Record
+index_img: /img/kubernetes.png
 tags:
   - Kubernetes
   - Crash

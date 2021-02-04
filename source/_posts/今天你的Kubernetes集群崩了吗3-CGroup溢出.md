@@ -1,9 +1,10 @@
 ---
 title: 今天你的Kubernetes集群崩了吗3-cgroups溢出
-date: 2020-05-25
-updated: 2020-05-25
+date: 2021-01-29
+updated: 2021-01-29
 categories:
   - Record
+index_img: /img/docker.jpeg
 tags:
   - Kubernetes
   - Crash
