@@ -304,6 +304,14 @@ navbar:
         link: "https://github.com/wzj751127122/blog/",
         icon: "iconfont icon-code",
       }
+    - {
+      key: '文档',
+      icon: 'iconfont icon-books',
+      submenu: [
+        { key: 'Go 入门指南', link: 'http://119.29.11.185:32757/' },
+        { key: 'k8s 实战', link: 'https://github.com' },
+      ]
+      }
     - { key: "关于", link: "/about/", icon: "iconfont icon-user-fill" }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
