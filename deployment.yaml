@@ -16,6 +16,17 @@ spec:
           backend:
             serviceName: gitbook
             servicePort: 80
+    - host: i9t.top
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: blog
+            servicePort: 80
+        - path: /golang
+          backend:
+            serviceName: gitbook
+            servicePort: 80
 #  backend:
 #    serviceName: blog
 #    servicePort: 80
