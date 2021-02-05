@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://119.29.11.185
+url: http://i9t.top
 root: /
 permalink: :category/:title/
 permalink_defaults:
