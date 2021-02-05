@@ -8,12 +8,17 @@ spec:
     - host: www.i9t.top
       http:
         paths:
-          - backend:
-              serviceName: blog
-              servicePort: 80
-  backend:
-    serviceName: blog
-    servicePort: 80
+        - path: /
+          backend:
+            serviceName: blog
+            servicePort: 80
+        - path: /golang
+          backend:
+            serviceName: gitbook
+            servicePort: 80
+#  backend:
+#    serviceName: blog
+#    servicePort: 80
 
 ---
 apiVersion: v1
