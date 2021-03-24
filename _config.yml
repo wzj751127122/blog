@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hello
+title: DevOps 运维
 subtitle: '今天你的Kubernetes集群崩溃了吗¿'
 description: '合法合规的好网站，不定时分享Kubernetes知识与一些奇奇怪怪的技巧'
 keywords: blog, kubernets, docker, geek, hack
