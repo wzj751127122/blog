@@ -309,7 +309,7 @@ navbar:
       icon: 'iconfont icon-books',
       submenu: [
         { key: 'Go 入门指南', link: 'http://www.i9t.top/golang/' },
-        { key: 'k8s 实战', link: 'https://github.com' },
+        { key: 'k8s 实战', link: 'http://www.i9t.top/k8s/' },
       ]
       }
     - { key: "关于", link: "/about/", icon: "iconfont icon-user-fill" }
