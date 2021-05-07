@@ -1,7 +1,7 @@
 ---
-title: kubernetes使用kubevirt创建windows10虚拟机
-date: 2021-03-10
-updated: 2021-03-10
+title: kubernetes日志解决方案
+date: 2021-05-7
+updated: 2021-05-7
 categories:
   - Record
 index_img: /img/kibana.jpeg
@@ -38,11 +38,11 @@ kubectl create ns logging
 
 ElasticSearch 安装有最低安装要求，如果安装后 Pod 无法正常启动，请检查是否符合最低要求的配置，要求如下：
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/z9BgVMEm7Yseu1rRibjicQUyOj6S6QxcsAonwnC9gic3CEPgia2jmh5ukgZUViaoSQh31Wz2uuvJXrO1ibicNdXVpOepg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)es 集群要求
+![](https://tva1.sinaimg.cn/large/008i3skNly1gq9wa6j2dgj316m08edjr.jpg)es 集群要求
 
 这里我们要安装的 ES 集群环境信息如下所示：
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/z9BgVMEm7Yseu1rRibjicQUyOj6S6QxcsApgeJdr2BlvTnoiaPkOfEyxemMCqiar7A1LO7ZMP0ERPQC3DzQD4GQKIQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)es 集群环境
+![](https://tva1.sinaimg.cn/large/008i3skNly1gq9wad2ij9j316m08c0vs.jpg)es 集群环境
 
 这里我们使用一个 NFS 类型的 StorageClass 来做持久化存储，当然如果你是线上环境建议使用 Local PV 或者 Ceph RBD 之类的存储来持久化 Elasticsearch 的数据。
 
