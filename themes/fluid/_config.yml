@@ -312,6 +312,12 @@ navbar:
         { key: 'kubernetes 实战指南', link: 'http://www.i9t.top/k8s/' },
       ]
       }
+    - {
+        key: "游戏",
+        link: "http://www.i9t.top/game/",
+        icon: "iconfont icon-code",
+      }
+
     - { key: "关于", link: "/about/", icon: "iconfont icon-user-fill" }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
