@@ -42,8 +42,7 @@ jobs:
           kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
           args: apply -f deployment.yaml
       - name: verify deployment
-        uses: steebchen/kubectl@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        uses: danielr1996/kubectl-action@1.0.0
         with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
           args: '"rollout status -n blog deployment/blog"'
