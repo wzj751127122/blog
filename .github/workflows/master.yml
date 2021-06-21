@@ -37,16 +37,13 @@ jobs:
       - run: |
           sed -i 's/{TAG}/${{ github.sha }}/g' deployment.yaml
       - name: deploy to cluster
-        uses: steebchen/kubectl@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-          KUBECTL_VERSION: "1.16"
+        uses: danielr1996/kubectl-action@1.0.0
         with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
           args: apply -f deployment.yaml
       - name: verify deployment
         uses: steebchen/kubectl@master
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-          KUBECTL_VERSION: "1.16"
         with:
           args: '"rollout status -n blog deployment/blog"'
