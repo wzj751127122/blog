@@ -4,6 +4,10 @@ metadata:
   name: blog
   namespace: blog
 spec:
+  tls:
+  - hosts:
+    - www.i9t.top
+    secretName: nginx-secret
   rules:
     - host: www.i9t.top
       http:
@@ -43,10 +47,6 @@ spec:
           backend:
             serviceName: game
             servicePort: 80
-    tls:
-    - hosts:
-      - www.i9t.com
-      secretName: nginx-secret 
 #  backend:
 #    serviceName: blog
 #    servicePort: 80
