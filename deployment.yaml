@@ -43,6 +43,10 @@ spec:
           backend:
             serviceName: game
             servicePort: 80
+    tls:
+    - hosts:
+      - www.i9t.com
+      secretName: nginx-secret 
 #  backend:
 #    serviceName: blog
 #    servicePort: 80
@@ -59,6 +63,9 @@ spec:
       port: 80
       protocol: TCP
       targetPort: 80
+    - name: https
+      port: 443
+      protocol: TCP
   selector:
     app: blog
   sessionAffinity: ClientIP
@@ -131,6 +138,10 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/nginx/html/db.json
               name: db
+            - mountPath: /etc/nginx/ssl
+              name: secret-volume
+            - mountPath: /etc/nginx/conf.d
+              name: configmap-volume
       dnsConfig: {}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
@@ -146,3 +157,11 @@ spec:
             path: /data/Thumbs.json
             type: "FileOrCreate"
           name: thumbs
+        - name: secret-volume
+          secret:
+            defaultMode: 420
+            secretName: nginx-secret
+        - configMap:
+            defaultMode: 420
+            name: nginx-conf
+          name: configmap-volume
