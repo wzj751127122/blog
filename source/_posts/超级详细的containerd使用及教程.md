@@ -17,17 +17,17 @@ tags:
 
 ## 容器进行时调用过程
 
-![image-20220810104543699](https://tva1.sinaimg.cn/large/e6c9d24ely1h51h5y97zsj20pa0dfq3z.jpg)![]()
+![image-20220810104543699](https://tva1.sinaimg.cn/large/e6c9d24ely1h51h5y97zsj20pa0dfq3z.jpg)
 
 **起因**
 
 ## 传统的docker架构
 
-![image-20220810104645661](https://tva1.sinaimg.cn/large/e6c9d24ely1h51h6zh0hvj20ph0793yw.jpg)![]()
+![image-20220810104645661](https://tva1.sinaimg.cn/large/e6c9d24ely1h51h6zh0hvj20ph0793yw.jpg)
 
 **当Docker要创建一个容器时，需要进行下面的步骤:**
 
-![image-20220810104739354](https://tva1.sinaimg.cn/large/e6c9d24ely1h51h7xdgq9j20q40fgt98.jpg)![]()
+![image-20220810104739354](https://tva1.sinaimg.cn/large/e6c9d24ely1h51h7xdgq9j20q40fgt98.jpg)
 
 - Kubelet 通过CRI接口(gRPC)调用dockershim，请求创建一个容器。（CRI即容器运行时接口）
 - dockershim 收到请求后，转换成Docker Daemon能听懂的请求，发到Docker Daemon上请求创建容器。
@@ -88,7 +88,7 @@ CRI大概通过了下面的几个项目构成了Kubernetes的Runtime生态
 
 > 由于早期Kubernetes在市场没有主导地位，有一些容器运行时可能不会自身实现CRI接口，于是就有了shim，一个shim的职责就是作为适配器，将各种容器运行时的本身的接口适配到Kubernetes的CRI接口上
 
-![image-20220810104952754](https://tva1.sinaimg.cn/large/e6c9d24ely1h51ha8j8hwj20hf04xq32.jpg)![]()
+![image-20220810104952754](https://tva1.sinaimg.cn/large/e6c9d24ely1h51ha8j8hwj20hf04xq32.jpg)
 
 > cri-runtime主要为了取消docker
 
@@ -104,19 +104,19 @@ Kubelet通过gRPC 框架与容器运行时或shim进行通信，其中 kubelet �
 
 在Containerd 1.0中，对CRI的适配通过了一个单独的进程CRI-containerd来完成
 
-![image-20220810105015152](https://tva1.sinaimg.cn/large/e6c9d24ely1h51ham55xrj20p306rq38.jpg)![]()
+![image-20220810105015152](https://tva1.sinaimg.cn/large/e6c9d24ely1h51ham55xrj20p306rq38.jpg)
 
 containerd 1.1中，砍掉了CRI-containerd这个进程，直接把适配逻辑作为插件放进了containerd主进程中
-![image-20220810105025622](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hat1pmfj20pf06qwev.jpg)![]()
+![image-20220810105025622](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hat1pmfj20pf06qwev.jpg)
 
 containerd 1.1中做的事情，实际上Kubernetes社区做了一个更漂亮的`cri-o`，兼容CRI和OCI
-![image-20220810105039663](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hb1hwgxj20pj07gt95.jpg)![]()
+![image-20220810105039663](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hb1hwgxj20pj07gt95.jpg)
 
 **Containerd与Docker区别？**
 
 > 实际上containerd只是一个精简版docker，为了更好的支持Kubernetes而已
 
-![image-20220810105051636](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hb8zeu6j20pu06zq3l.jpg)![]()
+![image-20220810105051636](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hb8zeu6j20pu06zq3l.jpg)
 
 ## 哪些容器运行时引擎支持CRI？
 
@@ -129,7 +129,7 @@ containerd 1.1中做的事情，实际上Kubernetes社区做了一个更漂亮�
 
 通过下图，我们可以看到这3个的区别，目前Kubernetes官网已经支持`containerd`、`CRI-o`容器运行时支持
 
-![image-20220810105145515](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hc6soy1j20gj0dnmxn.jpg)![]()
+![image-20220810105145515](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hc6soy1j20gj0dnmxn.jpg)
 
 ## Containerd
 
@@ -147,7 +147,7 @@ containerd 1.1中做的事情，实际上Kubernetes社区做了一个更漂亮�
 
 服务端通过 unix domain socket 暴露低层的 gRPC API 接口出去，客户端通过这些 API 管理节点上的容器，每个containerd只负责一台机器，Pull镜像，对容器的操作（启动、停止等），网络，存储都是由containerd完成。具体运行容器由runc负责，实际上只要是符合OCI规范的容器都可以支持
 
-![image-20220810105208951](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hclbve0j20pp0g6433.jpg)![]()
+![image-20220810105208951](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hclbve0j20pp0g6433.jpg)
 
 为了解耦，containerd 将系统划分成了不同的组件，每个组件都由一个或多个模块协作完成（Core 部分），每一种类型的模块都以插件的形式集成到 Containerd 中，而且插件之间是相互依赖的，例如，上图中的每一个长虚线的方框都表示一种类型的插件，包括 Service Plugin、Metadata Plugin、GC Plugin、Runtime Plugin 等，其中 Service Plugin 又会依赖 Metadata Plugin、GC Plugin 和 Runtime Plugin。每一个小方框都表示一个细分的插件，例如 Metadata Plugin 依赖 Containers Plugin、Content Plugin 等
 
@@ -156,11 +156,11 @@ containerd 1.1中做的事情，实际上Kubernetes社区做了一个更漂亮�
 
 对于K8s来说，实际需要Containerd即可，中间的垫片(shim)是完全可以省略，减少调用链
 
-![image-20220810105225042](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hcvm83dj20pr0badgy.jpg)![]()
+![image-20220810105225042](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hcvm83dj20pr0badgy.jpg)
 
 > **Containerd已经将shim集成到kubelet中，减少了shim**，但是如果我们使用containerd，那么将无法使用docker ps或者docker exec命令来获取容器。可以使用docker pull和docker build命令来构建镜像
 
-![image-20220810105247963](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hd9v3eqj20pk0ffjsj.jpg)![]()
+![image-20220810105247963](https://tva1.sinaimg.cn/large/e6c9d24ely1h51hd9v3eqj20pk0ffjsj.jpg)
 
 参考文档:
 https://www.cnblogs.com/charlieroro/articles/10998203.html
