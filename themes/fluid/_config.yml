@@ -411,9 +411,9 @@ footer:
   beian:
     enable: true
     # ICP证号
-    #icp_text: 京ICP证20011800号
+    icp_text: 蒙ICP备2021001040号-1
     # 公安备案号，不填则只显示ICP
-    police_text: 蒙ICP备2021001040号-1
+    #police_text: 蒙ICP备2021001040号-1
     # 公安备案的编号，用于URL跳转查询
     police_code: 5802747
     # 公安备案的图片. 为空时不显示备案图片
@@ -636,7 +636,7 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: true
+    enable: false
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo
