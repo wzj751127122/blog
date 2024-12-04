@@ -42,6 +42,9 @@ jobs:
 
       - name: Setup KUBECONFIG for Custom K8s Cluster
         run: echo "${{ secrets.KUBE_CONFIG_EKS }}" > $HOME/kubeconfig
+      
+      - run: |
+          sed -i 's/{TAG}/${{ github.sha }}/g' deployment.yaml
 
       - name: Deploy resource to eks cluster
         run: |-
@@ -49,6 +52,8 @@ jobs:
           kubectl  get node -o wide
           kubectl apply -f deployment.yaml  --kubeconfig=$KUBECONFIG
 
+      - name: verify deployment
+          kubectl rollout status -n blog deployment/blog --kubeconfig=$KUBECONFIG
       
       # # 让K8s应用deployment
       # - run: |
