@@ -32,7 +32,7 @@ spec:
               service:
                 name: blog
                 port:
-                  name: https
+                  name: http
 
 #  backend:
 #    serviceName: blog

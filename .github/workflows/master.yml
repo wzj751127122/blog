@@ -55,7 +55,8 @@ jobs:
 
       - name: verify deployment
         run: |-
-          kubectl rollout status -n blog deployment/blog
+          export KUBECONFIG=$HOME/kubeconfig
+          kubectl rollout status -n blog deployment/blog --kubeconfig=$KUBECONFIG
       
       # # 让K8s应用deployment
       # - run: |
