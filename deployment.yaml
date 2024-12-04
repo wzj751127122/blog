@@ -125,10 +125,6 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/nginx/html/db.json
               name: db
-            - mountPath: /etc/nginx/ssl
-              name: secret-volume
-            - mountPath: /etc/nginx/conf.d
-              name: configmap-volume
       dnsConfig: {}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
@@ -144,11 +140,3 @@ spec:
             path: /data/Thumbs.json
             type: "FileOrCreate"
           name: thumbs
-        - name: secret-volume
-          secret:
-            defaultMode: 420
-            secretName: nginx-secret
-        - configMap:
-            defaultMode: 420
-            name: nginx-conf
-          name: configmap-volume
