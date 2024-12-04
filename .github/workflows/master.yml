@@ -33,16 +33,33 @@ jobs:
           repository: wzj751127122/blog
           tags: ${{ github.sha }}
 
-      # 让K8s应用deployment
-      - run: |
-          sed -i 's/{TAG}/${{ github.sha }}/g' deployment.yaml
-      - name: deploy to cluster
-        uses: danielr1996/kubectl-action@1.0.0
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG_EKS }}
-          args: apply -f deployment.yaml
-      - name: verify deployment
-        uses: danielr1996/kubectl-action@1.0.0
-        with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG_EKS }}
-          args: '"rollout status -n blog deployment/blog"'
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: cn-north-1
+
+      - name: Setup KUBECONFIG for Custom K8s Cluster
+        run: echo "${{ secrets.KUBE_CONFIG_EKS }}" > $HOME/kubeconfig
+
+      - name: Deploy resource to eks cluster
+        run: |-
+          export KUBECONFIG=$HOME/kubeconfig
+          kubectl  get node -o wide
+          kubectl apply -f deployment.yaml  --kubeconfig=$KUBECONFIG
+
+      
+      # # 让K8s应用deployment
+      # - run: |
+      #     sed -i 's/{TAG}/${{ github.sha }}/g' deployment.yaml
+      # - name: deploy to cluster
+      #   uses: danielr1996/kubectl-action@1.0.0
+      #   with:
+      #     kubeconfig: ${{ secrets.KUBE_CONFIG_EKS }}
+      #     args: apply -f deployment.yaml
+      # - name: verify deployment
+      #   uses: danielr1996/kubectl-action@1.0.0
+      #   with:
+      #     kubeconfig: ${{ secrets.KUBE_CONFIG_EKS }}
+      #     args: '"rollout status -n blog deployment/blog"'
