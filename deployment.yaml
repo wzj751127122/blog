@@ -81,10 +81,10 @@ spec:
       labels:
         app: blog
     spec:
-      imagePullSecrets:
-        - name: github
+      # imagePullSecrets:
+      #   - name: github
       containers:
-        - image: wzj751127122/blog:{TAG}
+        - image: hub.proxy.saibit.com/wzj751127122/blog:{TAG}
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -122,21 +122,14 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           tty: true
-          volumeMounts:
-            - mountPath: /usr/share/nginx/html/db.json
-              name: db
       dnsConfig: {}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      volumes:
-        - hostPath:
-            path: /data/db.json
-            type: "FileOrCreate"
-          name: db
-        - hostPath:
-            path: /data/Thumbs.json
-            type: "FileOrCreate"
-          name: thumbs
+      # volumes:
+      #   - hostPath:
+      #       path: /data/Thumbs.json
+      #       type: "FileOrCreate"
+      #     name: thumbs
