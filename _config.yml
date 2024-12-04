@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://i9t.top
+url: http://test.ogpu.cloud
 root: /
 permalink: :category/:title/
 permalink_defaults:

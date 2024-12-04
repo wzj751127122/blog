@@ -39,10 +39,10 @@ jobs:
       - name: deploy to cluster
         uses: danielr1996/kubectl-action@1.0.0
         with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+          kubeconfig: ${{ secrets.KUBE_CONFIG_EKS }}
           args: apply -f deployment.yaml
       - name: verify deployment
         uses: danielr1996/kubectl-action@1.0.0
         with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+          kubeconfig: ${{ secrets.KUBE_CONFIG_EKS }}
           args: '"rollout status -n blog deployment/blog"'

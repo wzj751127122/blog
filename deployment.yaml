@@ -3,13 +3,15 @@ kind: Ingress
 metadata:
   name: blog
   namespace: blog
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
 spec:
   tls:
   - hosts:
-    - www.i9t.top
+    - www.test.ogpu.cloud
     secretName: nginx-secret
   rules:
-    - host: www.i9t.top
+    - host: www.test.ogpu.cloud
       http:
         paths:
         - path: /
@@ -28,7 +30,7 @@ spec:
           backend:
             serviceName: game
             servicePort: 80
-    - host: i9t.top
+    - host: test.ogpu.cloud
       http:
         paths:
         - path: /
