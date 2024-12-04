@@ -11,7 +11,7 @@ spec:
     - hosts:
         - test.ogpu.cloud
       secretName: nginx-secret
-  # rules:
+  rules:
   #   - host: www.test.ogpu.cloud
   #     http:
   #       paths:
