@@ -9,19 +9,19 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - www.test.ogpu.cloud
+        - test.ogpu.cloud
       secretName: nginx-secret
-  rules:
-    - host: www.test.ogpu.cloud
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: blog
-                port:
-                  name: http
+  # rules:
+  #   - host: www.test.ogpu.cloud
+  #     http:
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+  #           backend:
+  #             service:
+  #               name: blog
+  #               port:
+  #                 name: http
 
     - host: test.ogpu.cloud
       http:
@@ -32,7 +32,7 @@ spec:
               service:
                 name: blog
                 port:
-                  name: http
+                  name: https
 
 #  backend:
 #    serviceName: blog
