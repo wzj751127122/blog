@@ -44,7 +44,7 @@ jobs:
         run: echo "${{ secrets.KUBE_CONFIG_EKS }}" > $HOME/kubeconfig
       
       - name: sed TAG
-      - run: |
+        run: |-
           sed -i 's/{TAG}/${{ github.sha }}/g' deployment.yaml
 
       - name: Deploy resource to eks cluster
