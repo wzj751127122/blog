@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: blog
@@ -6,49 +6,34 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
 spec:
+  ingressClassName: nginx
   tls:
-  - hosts:
-    - www.test.ogpu.cloud
-    secretName: nginx-secret
+    - hosts:
+        - www.test.ogpu.cloud
+      secretName: nginx-secret
   rules:
     - host: www.test.ogpu.cloud
       http:
         paths:
-        - path: /
-          backend:
-            serviceName: blog
-            servicePort: 80
-        - path: /golang
-          backend:
-            serviceName: gitbook
-            servicePort: 80
-        - path: /k8s
-          backend:
-            serviceName: gitbook-k8s
-            servicePort: 80
-        - path: /game
-          backend:
-            serviceName: game
-            servicePort: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blog
+                port:
+                  name: http
+
     - host: test.ogpu.cloud
       http:
         paths:
-        - path: /
-          backend:
-            serviceName: blog
-            servicePort: 80
-        - path: /golang
-          backend:
-            serviceName: gitbook
-            servicePort: 80
-        - path: /k8s
-          backend:
-            serviceName: gitbook-k8s
-            servicePort: 80
-        - path: /game
-          backend:
-            serviceName: game
-            servicePort: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blog
+                port:
+                  name: http
+
 #  backend:
 #    serviceName: blog
 #    servicePort: 80
